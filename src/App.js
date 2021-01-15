@@ -32,6 +32,7 @@ const App = () => {
         })
       }
     else{
+      setCharacters([]);
       setPageCount(Math.ceil((bookmarked.length / 20)));
     }
   }
