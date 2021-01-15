@@ -14,7 +14,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function PaginationControlled({ page, handleChange, count}) {
   const classes = useStyles();
-  console.log(page);
   return (
     <div className={classes.root}>
       <Typography>Page: {page}</Typography>

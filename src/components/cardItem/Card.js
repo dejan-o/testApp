@@ -3,7 +3,8 @@ import './Card.scss'
 
 const Card = ( { element, onBookmarkChange, isBookmarked } ) => {
     const {thumbnail, name} = element;
-    const link = thumbnail.path + thumbnail.extension
+    const link = thumbnail.path + '.' + thumbnail.extension;
+    
     return (
         <figure className="card">
         <div className="card__img">

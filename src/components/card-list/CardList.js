@@ -3,18 +3,13 @@ import './CardList.scss';
 import Card from '../cardItem/Card';
 
 const CardList = ( { characters, onBookmarkChange, isBookmarkedFunction } ) => {
- 
-    
-
-  
-
 
     return (
         <div className="cardList">
         {
-            characters.map( (item,i) => {
+            characters.map( (item) => {
                 const isBookmarked = isBookmarkedFunction(item);
-                return <Card key={i} element={item} isBookmarked={isBookmarked} onBookmarkChange={onBookmarkChange}/>
+                return <Card key={item.id} element={item} isBookmarked={isBookmarked} onBookmarkChange={onBookmarkChange}/>
             })
         }  
         </div>
