@@ -16,16 +16,19 @@ const App = () => {
   const [ pageCount, setPageCount ] = useState(0);
   const [ characters, setCharacters ] = useState([]);
 
-  //fetch data helper function 
-  function getData(){
+  
+  useEffect( () => {
+    let active = true;
     const name = searchField.trim();
     if(name){
         const offset = (page-1)*20;
         fetch(`https://gateway.marvel.com:443/v1/public/characters?apikey=${apiKey}&nameStartsWith=${name}&limit=20&offset=${offset}`).
         then( result => result.json()).
         then( obj => {
+            if(active){
             setPageCount(Math.ceil((obj.data.total / 20)));
             setCharacters(obj.data.results);
+            }
         }
         ).catch( e => {
           setCharacters([])
@@ -35,17 +38,17 @@ const App = () => {
       setCharacters([]);
       setPageCount(Math.ceil((bookmarked.length / 20)));
     }
-  }
 
-  
-  useEffect( () => {
-    getData();
+    return () => {
+      active = false;
+    }
       },[searchField, page]);
 
       
 
   const onSearchChange = (event) => {
     setPage(1);
+    setPageCount(0);
     setSearchField(event.target.value);
   }
 
